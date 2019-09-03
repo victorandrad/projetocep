@@ -1,0 +1,68 @@
+<!--<p>-->
+<!--  consulta-cep workando!-->
+<!--</p>-->
+<br/>
+<div class="container">
+
+    <div class="form-group">
+        <label>CEP:</label>
+        <input type="text" class="form-control" aria-describedby="nameHelp" placeholder="Digite o cep"
+               mask="00000-000" [(ngModel)]="cep">
+    </div>
+
+    <button [disabled]="cep.length !== 8" type="submit" class="btn btn-primary" (click)="consultaCep()">
+        Consultar CEP
+    </button>
+
+    <br/>
+    <br/>
+
+    <div *ngIf="loading_cep" class="alert alert-warning" role="alert">
+        Aguarde, consultando CEP...
+    </div>
+
+    <div *ngIf="erro_cep" class="alert alert-danger" role="alert">
+        CEP não encontrado
+    </div>
+
+    <div class="form-group">
+        <label>Logradouro</label>
+        <input disabled type="text" class="form-control" [(ngModel)]="retorno_cep.logradouro">
+    </div>
+
+    <div class="form-group">
+        <label>Bairro</label>
+        <input disabled type="text" class="form-control" [(ngModel)]="retorno_cep.bairro">
+    </div>
+
+    <div class="form-group">
+        <label>Cidade</label>
+        <input disabled type="text" class="form-control" [(ngModel)]="retorno_cep.localidade">
+    </div>
+
+    <div class="form-group">
+        <label>Estado</label>
+        <input disabled type="text" class="form-control" [(ngModel)]="retorno_cep.uf">
+    </div>
+
+    <br/>
+
+    <button [disabled]="!retorno_cep.localidade" type="submit" class="btn btn-primary"
+            (click)="consultaClima(retorno_cep.localidade)">
+        Consultar Clima
+    </button>
+
+    <br/>
+    <br/>
+
+    <div class="form-group">
+        <label>Temperatura</label>
+        <input disabled type="text" class="form-control" [(ngModel)]="clima.temp">
+    </div>
+
+    <div class="form-group">
+        <label>Clima</label>
+        <input disabled type="text" class="form-control" [(ngModel)]="clima.description">
+    </div>
+
+</div>
